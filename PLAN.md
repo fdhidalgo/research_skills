@@ -1,6 +1,6 @@
 # Research Skills Plan
 
-**Status:** Design complete; implementation not yet started.
+**Status:** Design complete; thin-slice implementation in progress (1 of 5 thin-slice skills shipped). Live progress tracker is §6 — update it as skills land.
 **Created:** 2026-05-14
 **Origin:** Adaptation of [Matt Pocock's agent skills](reference/mattpocock_skills/) (28 skills) for social-science research workflows.
 
@@ -221,25 +221,33 @@ Also **not** built in v1 (Q18 candidates declined):
 - `pre-register-analysis` — useful only for projects that get pre-registered; revisit later.
 - Synthetic-recovery / MCMC-diagnostic dedicated skills — stay ad-hoc.
 
-## 6. Build sequence (Q19)
+## 6. Build sequence (Q19) — and live progress tracker
 
 **End-to-end thin slice first.** Build the smallest viable chain end-to-end before deepening any single skill.
 
-1. `setup-research-skills` (need it to bootstrap any work)
-2. `grill-with-docs-research`
-3. `to-analysis-plan`
-4. `to-issues-research`
-5. `triage-research`
-6. **Run on one real research project. Find what's broken.**
-7. Then deepen, in rough order of leverage:
-   - `validate-data`
-   - `probe`
-   - `improve-research-pipeline`
-   - `diagnose-research`
-   - `bootstrap-research-repo`
-   - `prototype-research`
-   - `tdd-research`
-   - `zoom-out`, `handoff`, `write-a-skill` (mostly drop-in from Matt)
+Legend: ✅ shipped · 🔄 in progress · ⏳ next up · ⬜ not started.
+
+**Thin slice (ship in order):**
+
+1. ✅ `setup-research-skills` — shipped 2026-05-14. `skills/setup-research-skills/` (SKILL.md + 5 seed-template files), registered in `.claude-plugin/plugin.json`, linked from `README.md`. Not yet end-to-end tested on a fresh repo.
+2. ⏳ `grill-with-docs-research` — next
+3. ⬜ `to-analysis-plan`
+4. ⬜ `to-issues-research`
+5. ⬜ `triage-research`
+6. ⬜ **Run on one real research project. Find what's broken.**
+
+**Then deepen, in rough order of leverage:**
+
+7. ⬜ `validate-data`
+8. ⬜ `probe`
+9. ⬜ `improve-research-pipeline`
+10. ⬜ `diagnose-research`
+11. ⬜ `bootstrap-research-repo`
+12. ⬜ `prototype-research`
+13. ⬜ `tdd-research`
+14. ⬜ `zoom-out`, `handoff`, `write-a-skill` (mostly drop-in from Matt)
+
+**Update rule:** when a skill ships, change its bullet to ✅ with the date and a one-line note about what landed (paths, anything deferred). Promote the next skill to ⏳. Keep this section the single source of truth for "where are we" so a future session can pick up cold.
 
 ## 7. Language strategy (Q20)
 

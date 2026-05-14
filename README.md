@@ -10,7 +10,11 @@ Design complete, implementation in progress. See [`PLAN.md`](PLAN.md) for the fu
 
 ## Skills
 
-_To be populated as skills land. See `PLAN.md` §4 for the 15-skill catalog._
+Shipped so far:
+
+- [`setup-research-skills`](skills/setup-research-skills/SKILL.md) — one-time per-repo setup. Writes the `## Agent skills` block to `CLAUDE.md`, seeds `docs/agents/*.md`, `CONTEXT.md`, and `docs/adr/0000-template.md`, and creates the four GitHub triage labels.
+
+Coming next (in build order — see [`PLAN.md`](PLAN.md) §6): `grill-with-docs-research`, `to-analysis-plan`, `to-issues-research`, `triage-research`. The full 15-skill catalog is in `PLAN.md` §4.
 
 ## Install
 

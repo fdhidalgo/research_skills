@@ -1,4 +1,6 @@
 {
   "name": "research-skills",
-  "skills": []
+  "skills": [
+    "./skills/setup-research-skills"
+  ]
 }

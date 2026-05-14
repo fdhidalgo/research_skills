@@ -7,7 +7,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 A Claude Code **plugin** that ships a suite of agent skills for social-science research workflows (R + `targets` primary, Python + `marimo` later). Adapted from Matt Pocock's skills and re-targeted at research artifacts. Design is complete; the plugin scaffold is in place; skills are being built incrementally per `PLAN.md` §6.
 
 Canonical artifacts:
-- **`PLAN.md`** — the design doc. Captures every decision from the interview that produced the plan (20 numbered questions). Read this first for any implementation task. The 15-skill catalog, drop list, build sequence, language strategy, and open questions all live here.
+- **`PLAN.md`** — the design doc *and* the live progress tracker. Captures every decision from the interview (20 numbered questions); §6 tracks which skills have shipped, which is next, and which are not started. Read this first for any implementation task, and update §6 every time a skill lands.
 - **`.claude-plugin/plugin.json`** — the plugin manifest. Every shipped skill must be listed here.
 - **`skills/`** — where research-flavored skills live, one directory per skill containing `SKILL.md` (+ optional supporting files).
 - **`references/`** — shared reference docs callable from multiple skills (R packages, conventions, etc.).
@@ -30,9 +30,11 @@ research-skills/                   # published as a Claude Code plugin
   .claude/settings.local.json      # local Claude Code permissions (gitignored by default)
 ```
 
-## Build sequence (from PLAN.md)
+## Build sequence and progress tracker
 
-End-to-end thin slice first, then deepen. First five skills to ship:
+`PLAN.md` §6 is the live tracker for what's shipped, what's next, and what's not started. **Read it at the start of every session** to know where to pick up, and **update it whenever a skill lands** — change the bullet to ✅, add the date, note paths and anything deferred. Don't track progress anywhere else (no separate TODO file, no checklist in this file).
+
+End-to-end thin slice first, then deepen. First five skills to ship, in order:
 
 1. `setup-research-skills`
 2. `grill-with-docs-research`
