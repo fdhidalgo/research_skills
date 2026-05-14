@@ -1,6 +1,6 @@
 ---
 name: setup-research-skills
-description: One-time per-repo setup for the research-skills suite. Writes an `## Agent skills` block to `CLAUDE.md`, seeds `docs/agents/*.md`, `CONTEXT.md`, and `docs/adr/0000-template.md`, and creates the four GitHub triage labels. Run before first use of `grill-with-docs-research`, `to-analysis-plan`, `to-issues-research`, or `triage-research` — or if those skills appear to be missing context about this repo's issue tracker, triage labels, or research docs.
+description: One-time per-repo setup for the research-skills suite. Writes an `## Agent skills` block to `CLAUDE.md`, seeds `docs/agents/*.md`, `CONTEXT.md`, and `docs/adr/0000-template.md`, and creates the GitHub labels (four triage-state labels + the `epic` kind label). Run before first use of `grill-with-docs-research`, `to-analysis-plan`, `to-issues-research`, or `triage-research` — or if those skills appear to be missing context about this repo's issue tracker, triage labels, or research docs.
 disable-model-invocation: true
 ---
 
@@ -9,7 +9,7 @@ disable-model-invocation: true
 Scaffold the per-repo configuration that the research skills assume:
 
 - **Issue tracker** — GitHub Issues, accessed via the `gh` CLI, with a `Depends on: #N` field in issue bodies for the task DAG.
-- **Triage labels** — the four states (`needs-info`, `ready`, `awaiting-review`, `done`) used to move issues through the lightweight pipeline.
+- **Triage labels** — two flavours: **state labels** (`needs-info`, `ready`, `awaiting-review`, `done`) that move regular issues through the lightweight pipeline, and **kind labels** (currently just `epic`) that mark categorically-different issues like the plan containers created by `to-analysis-plan`.
 - **Research docs** — where this repo's `CONTEXT.md` (glossary / variables / population) and `docs/adr/` (methodology decisions) live, and how the other skills should read them.
 
 This is a prompt-driven skill, not a deterministic script. Explore, present what you found, confirm with the user, then write.
@@ -34,14 +34,18 @@ Assume the user does not know what these terms mean. Each decision starts with a
 
 **Decision A — Triage label vocabulary.**
 
-> Explainer: The research skills move issues through four states: `needs-info` (grilling required), `ready` (methodology locked, spec written, deps closed), `awaiting-review` (work finished — you need to inspect), and `done`. To do that they apply GitHub labels matching strings *you've actually configured*. Pick the strings now; they get written to `docs/agents/triage-labels.md` and (optionally) created on GitHub in step 5.
+> Explainer: The research skills use two flavours of labels. **State labels** move regular work issues through four states: `needs-info` (grilling required), `ready` (methodology locked, spec written, deps closed), `awaiting-review` (work finished — you need to inspect), and `done`. **Kind labels** mark categorically-different issues — currently just `epic`, the container created by `to-analysis-plan` to anchor a numbered analysis plan to the issue tracker. State and kind labels don't overlap on the same issue. To apply any of these the skills need GitHub labels matching strings *you've actually configured*. Pick the strings now; they get written to `docs/agents/triage-labels.md` and (optionally) created on GitHub in step 5.
 
-The four canonical roles and their defaults:
+State labels (defaults):
 
 - `needs-info` — grilling required (methodology or spec gap)
 - `ready` — methodology locked, spec written, dependencies closed
 - `awaiting-review` — agent or human has finished; user needs to inspect
 - `done` — closed
+
+Kind labels (defaults):
+
+- `epic` — top-level container for an analysis plan; not a work item, not in the state pipeline
 
 Default: each role's string equals its name. Ask the user if they want to override any. If their repo already uses different label names, map them here so the skills apply the right ones instead of creating duplicates.
 
@@ -77,7 +81,7 @@ GitHub Issues, accessed via the `gh` CLI. Issue bodies use a `Depends on: #N` fi
 
 ### Triage labels
 
-Four-state pipeline: `needs-info` / `ready` / `awaiting-review` / `done`. See `docs/agents/triage-labels.md`.
+State labels (four-state pipeline): `needs-info` / `ready` / `awaiting-review` / `done`. Kind labels: `epic` (plan containers, not in the state pipeline). See `docs/agents/triage-labels.md`.
 
 ### Research docs
 
@@ -103,14 +107,20 @@ If either already exists, leave it alone and tell the user.
 
 If the repo has a GitHub remote (check `git remote -v`):
 
-1. Run `gh label list --json name --jq '[.[].name]'` and diff against the four confirmed label strings.
+1. Run `gh label list --json name --jq '[.[].name]'` and diff against the five confirmed label strings (four state + one kind).
 2. Show the user the missing labels in a short list.
 3. Ask once: "Create these labels on the remote now?"
 4. If yes, run `gh label create <name> --color <hex> --description "<one-liner>"` for each missing label. Suggested colors and descriptions:
+
+   State labels:
    - `needs-info` — color `fbca04` (yellow), description "Grilling required: methodology or spec gap"
    - `ready` — color `0e8a16` (green), description "Methodology locked, spec written, dependencies closed"
    - `awaiting-review` — color `1d76db` (blue), description "Work finished; user needs to inspect"
    - `done` — color `5319e7` (purple), description "Closed"
+
+   Kind labels:
+   - `epic` — color `c5def5` (light blue), description "Top-level container for an analysis plan; not a triage state"
+
 5. If any label exists already with the same name, skip it silently — don't error out and don't change its color/description without asking.
 
 If the user overrode label names in step 2, use the overridden strings here too.

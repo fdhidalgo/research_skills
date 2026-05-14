@@ -229,10 +229,10 @@ Legend: ✅ shipped · 🔄 in progress · ⏳ next up · ⬜ not started.
 
 **Thin slice (ship in order):**
 
-1. ✅ `setup-research-skills` — shipped 2026-05-14. `skills/setup-research-skills/` (SKILL.md + 5 seed-template files), registered in `.claude-plugin/plugin.json`, linked from `README.md`. Not yet end-to-end tested on a fresh repo.
+1. ✅ `setup-research-skills` — shipped 2026-05-14, updated 2026-05-14 to add the `epic` kind label. `skills/setup-research-skills/` (SKILL.md + 5 seed-template files), registered in `.claude-plugin/plugin.json`, linked from `README.md`. `triage-labels.md` now split into state labels (4) and kind labels (`epic`). Not yet end-to-end tested on a fresh repo.
 2. ✅ `grill-with-docs-research` — shipped 2026-05-14. `skills/grill-with-docs-research/` (SKILL.md + CONTEXT-FORMAT.md + ADR-FORMAT.md), registered in `.claude-plugin/plugin.json`, linked from `README.md`. Mirrors Matt's `grill-with-docs` XML structure (`<what-to-do>` + `<supporting-info>`); retargeted at three CONTEXT.md axes (glossary / variables / population) and methodology ADRs. Single-context only; CONTEXT-MAP branching dropped. Not yet end-to-end tested on a real research repo.
-3. ⏳ `to-analysis-plan` — next
-4. ⬜ `to-issues-research`
+3. ✅ `to-analysis-plan` — shipped 2026-05-14. `skills/to-analysis-plan/` (SKILL.md + PLAN-FORMAT.md), registered in `.claude-plugin/plugin.json`, linked from `README.md`. Versioned-snapshot model: every invocation writes a new file at `docs/plans/NNNN-slug.md`; successors carry a fixed two-line `Supersedes:` preamble + "What changed" paragraph. Strict synthesise-only — does NOT interview; gaps surface as a first-class "Open questions" section that points back to `grill-with-docs-research`. No fixed template: PLAN-FORMAT.md describes four accomplishment-principles (goal / approach / deliverables / open work) and gives three structurally-different shape sketches (causal-DiD / measurement / Bayesian-methods) as reference points, not templates. After saving the file, offers once to also create a top-level GitHub epic issue (title `Epic: <plan title>`, `epic` kind label, links to plan file). Forced update to `setup-research-skills` to add the `epic` label to its vocabulary. Not yet end-to-end tested on a real research repo.
+4. ⏳ `to-issues-research` — next
 5. ⬜ `triage-research`
 6. ⬜ **Run on one real research project. Find what's broken.**
 

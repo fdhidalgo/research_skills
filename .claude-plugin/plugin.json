@@ -2,6 +2,7 @@
   "name": "research-skills",
   "skills": [
     "./skills/setup-research-skills",
-    "./skills/grill-with-docs-research"
+    "./skills/grill-with-docs-research",
+    "./skills/to-analysis-plan"
   ]
 }
