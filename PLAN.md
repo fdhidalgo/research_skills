@@ -230,8 +230,8 @@ Legend: ✅ shipped · 🔄 in progress · ⏳ next up · ⬜ not started.
 **Thin slice (ship in order):**
 
 1. ✅ `setup-research-skills` — shipped 2026-05-14. `skills/setup-research-skills/` (SKILL.md + 5 seed-template files), registered in `.claude-plugin/plugin.json`, linked from `README.md`. Not yet end-to-end tested on a fresh repo.
-2. ⏳ `grill-with-docs-research` — next
-3. ⬜ `to-analysis-plan`
+2. ✅ `grill-with-docs-research` — shipped 2026-05-14. `skills/grill-with-docs-research/` (SKILL.md + CONTEXT-FORMAT.md + ADR-FORMAT.md), registered in `.claude-plugin/plugin.json`, linked from `README.md`. Mirrors Matt's `grill-with-docs` XML structure (`<what-to-do>` + `<supporting-info>`); retargeted at three CONTEXT.md axes (glossary / variables / population) and methodology ADRs. Single-context only; CONTEXT-MAP branching dropped. Not yet end-to-end tested on a real research repo.
+3. ⏳ `to-analysis-plan` — next
 4. ⬜ `to-issues-research`
 5. ⬜ `triage-research`
 6. ⬜ **Run on one real research project. Find what's broken.**

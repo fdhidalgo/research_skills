@@ -13,8 +13,9 @@ Design complete, implementation in progress. See [`PLAN.md`](PLAN.md) for the fu
 Shipped so far:
 
 - [`setup-research-skills`](skills/setup-research-skills/SKILL.md) — one-time per-repo setup. Writes the `## Agent skills` block to `CLAUDE.md`, seeds `docs/agents/*.md`, `CONTEXT.md`, and `docs/adr/0000-template.md`, and creates the four GitHub triage labels.
+- [`grill-with-docs-research`](skills/grill-with-docs-research/SKILL.md) — Socratic grilling session that stress-tests a research plan against the paper's recorded language (`CONTEXT.md` glossary / variables / population) and methodology ADRs. Writes inline updates as terms and decisions crystallise.
 
-Coming next (in build order — see [`PLAN.md`](PLAN.md) §6): `grill-with-docs-research`, `to-analysis-plan`, `to-issues-research`, `triage-research`. The full 15-skill catalog is in `PLAN.md` §4.
+Coming next (in build order — see [`PLAN.md`](PLAN.md) §6): `to-analysis-plan`, `to-issues-research`, `triage-research`. The full 15-skill catalog is in `PLAN.md` §4.
 
 ## Install
 

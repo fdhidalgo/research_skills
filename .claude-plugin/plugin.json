@@ -1,6 +1,7 @@
 {
   "name": "research-skills",
   "skills": [
-    "./skills/setup-research-skills"
+    "./skills/setup-research-skills",
+    "./skills/grill-with-docs-research"
   ]
 }
