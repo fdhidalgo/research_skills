@@ -1,6 +1,6 @@
 # Research Skills Plan
 
-**Status:** Design complete; thin-slice implementation in progress (1 of 5 thin-slice skills shipped). Live progress tracker is §6 — update it as skills land.
+**Status:** Design complete; thin-slice implementation in progress (4 of 4 thin-slice skills shipped). Live progress tracker is §6 — update it as skills land.
 **Created:** 2026-05-14
 **Origin:** Adaptation of [Matt Pocock's agent skills](reference/mattpocock_skills/) (28 skills) for social-science research workflows.
 
@@ -14,7 +14,7 @@ Matt Pocock's skill suite delivers engineering discipline for AI-assisted coding
 
 Social-science research has different artifacts (analysis plans, data dictionaries, methodology decisions, tables, figures), a different unit of work (estimations, robustness sweeps, validation checks), and different failure modes (wrong-signed coefficients, non-convergent MCMC, omitted confounders, p-hacking risk). Direct use of Matt's skills mostly works but leaves the biggest research-specific leverage on the floor.
 
-This plan defines a **15-skill research-flavored suite** that keeps Matt's framework spine (grill → plan → issues → autonomous slice) and adapts it for an R + `targets` (primary) and Python + `marimo` (later) stack doing regression / causal / Bayesian work.
+This plan defines a **14-skill research-flavored suite** that keeps Matt's framework spine (grill → plan → issues → autonomous slice) and adapts it for an R + `targets` (primary) and Python + `marimo` (later) stack doing regression / causal / Bayesian work.
 
 ## 2. Goals (Q1)
 
@@ -84,18 +84,19 @@ What the agent may execute autonomously from an issue:
 - ❌ Methodological exploration (identification strategy choice, MCMC re-parameterization, etc.) — stays with the user
 
 ### Triage states (Q13)
-Lightweight, four states:
+Lightweight, four states — a **label vocabulary**, not a skill-backed workflow. The user applies them by hand (or `gh issue edit`) and the agent applies `awaiting-review` when it finishes autonomous work. A dedicated `triage-research` skill was scoped and then dropped (see §5 — too thin a layer over `gh` for a solo, low-volume tracker).
+
 - `needs-info` — grilling required (methodology or spec gap)
 - `ready` — methodology locked, spec written, deps closed
 - `awaiting-review` — agent has finished; user needs to inspect
 - `done` — closed
 
-**Agent behavior:** always inspect every result. Agent's job is to surface "this looks off" in issue/PR comments — wrong sign, divergent chains, balance failures — *not* to gate on its own state machine. The user inspects everything regardless.
+**Agent behavior:** always inspect every result. Agent's job is to surface "this looks off" in issue/PR comments — wrong sign, divergent chains, balance failures — *not* to gate on its own judgment. The user inspects everything regardless.
 
 ### Validation focus (Q12)
 By far the biggest priority is **data validation & sanity checks**, not code-level tests. Synthetic-recovery and inference-diagnostics (MCMC convergence etc.) stay ad-hoc; not skill-scaffolded for v1.
 
-## 4. The 15-skill suite
+## 4. The 14-skill suite
 
 ### Planning chain
 
@@ -116,30 +117,25 @@ By far the biggest priority is **data validation & sanity checks**, not code-lev
 - Writes each task as a GitHub Issue with `Depends on:` field referencing other issue numbers.
 - Writes/updates the top-level epic issue (or PLAN.md) tying everything together.
 
-#### 4. `triage-research` *(adapted from Matt's `triage`)*
-- Moves issues through the lightweight 4-state machine.
-- Confirms an issue is "ready": methodology locked, spec written, dependencies closed, acceptance criteria present.
-- Lighter than Matt's; no agent-brief artifact required.
-
 ### Execution & quality
 
-#### 5. `validate-data` *(NEW — the priority skill)*
+#### 4. `validate-data` *(NEW — the priority skill)*
 - Heavy-lift skill for data validation and sanity checks.
 - For R-first build: scaffolds checks via `pointblank` and/or `assertr`. Inline checks inside `tar_target()` nodes.
 - Catches: out-of-range values, missingness changes after data refresh, ID uniqueness violations, broken joins, distributional drift, balance failures.
 - Surfaces failures loudly; never silently passes a stale dataset.
 
-#### 6. `tdd-research` *(adapted from Matt's `tdd`)*
+#### 5. `tdd-research` *(adapted from Matt's `tdd`)*
 - Lightweight. Code-test cases only (helper functions, cleaning utilities). Uses `testthat` (R).
 - Skip integration-style or full red-green-refactor discipline.
 - Not a priority — code tests are "occasional" in user's workflow.
 
-#### 7. `diagnose-research` *(adapted from Matt's `diagnose`)* — **two-track**
+#### 6. `diagnose-research` *(adapted from Matt's `diagnose`)* — **two-track**
 - **Track A (code/pipeline bug):** Matt's reproduce → minimise → hypothesise → instrument → fix → regression-test loop, adapted for `targets` failures and (later) marimo cell failures.
 - **Track B (analytical surprise):** code runs cleanly, result is wrong-signed / non-convergent / fails-balance. Different flow: revisit assumptions → check data → re-examine spec → judge whether result is real or a methodology gap.
 - Skill asks user (or detects) which track at entry.
 
-#### 8. `improve-research-pipeline` *(adapted from Matt's `improve-codebase-architecture`)*
+#### 7. `improve-research-pipeline` *(adapted from Matt's `improve-codebase-architecture`)*
 - **Two combined audits** (Q16):
   - **Pipeline-shape audit:** reads `_targets.R`. Surfaces shallow steps, duplicated logic across nodes, oversized monolithic steps, I/O mixed into computation, hidden state.
   - **Methodology-risk scan:** flags garden-of-forking-paths patterns — multiple alternative specs reachable from the same target, spec choices buried in conditionals instead of ADRs, results-dependent branching, hardcoded sample restrictions not recorded in CONTEXT.md.
@@ -148,7 +144,7 @@ By far the biggest priority is **data validation & sanity checks**, not code-lev
 
 ### Exploration
 
-#### 9. `probe` *(NEW)* — quick exploratory probes for ideas not yet committed to the pipeline
+#### 8. `probe` *(NEW)* — quick exploratory probes for ideas not yet committed to the pipeline
 - For ideas the user wants to test before earning a place in `_targets.R`: "what if I drop post-2008 data?", "is there enough variation to identify Y?", "does this prior break convergence?", "does this finding hold under a quick robustness check?"
 - Distinct from `prototype-research`: probes are about a *substantive question*, not engineering prototyping of pipeline-bound code. They live **outside** the targets DAG by design.
 - **Lifecycle:**
@@ -172,17 +168,17 @@ probes/
 
 ### Generics kept as-is
 
-#### 10. `zoom-out` — generic; no changes.
-#### 11. `handoff` — generic; only retarget at research artifacts (plan, ADRs, open issues).
-#### 12. `write-a-skill` — meta; unchanged. Needed to author the rest of the suite.
-#### 13. `prototype-research` *(adapted from Matt's `prototype`)*
+#### 9. `zoom-out` — generic; no changes.
+#### 10. `handoff` — generic; only retarget at research artifacts (plan, ADRs, open issues).
+#### 11. `write-a-skill` — meta; unchanged. Needed to author the rest of the suite.
+#### 12. `prototype-research` *(adapted from Matt's `prototype`)*
 - Replace Matt's logic-vs-UI branches with **exploratory-vs-spec-locked branches**:
   - **Exploratory:** throwaway marimo notebook / `scratch.R` to interrogate data before any pipeline commitment.
   - **Spec-locked:** Matt's CLI-style prototype, used to stress-test a state machine or computation before embedding it in the pipeline.
 
 ### Infrastructure
 
-#### 14. `setup-research-skills` *(NEW)*
+#### 13. `setup-research-skills` *(NEW)*
 - One-time per-repo configurator.
 - Writes/updates `CLAUDE.md` with the agent skills block.
 - Creates `CONTEXT.md` from template.
@@ -190,7 +186,7 @@ probes/
 - Creates GitHub triage labels (`needs-info`, `ready`, `awaiting-review`).
 - Re-targeted version of Matt's `setup-matt-pocock-skills`.
 
-#### 15. `bootstrap-research-repo` *(NEW)*
+#### 14. `bootstrap-research-repo` *(NEW)*
 - Fresh-repo initialization. Calls `setup-research-skills` as a sub-step.
 - Creates:
   - `targets` skeleton (`_targets.R`, `R/` directory)
@@ -215,6 +211,7 @@ probes/
 | `writing-fragments` | Writing de-prioritized. |
 | `writing-shape` | Writing de-prioritized. |
 | All deprecated (`design-an-interface`, `qa`, `request-refactor-plan`, `ubiquitous-language`) | Already deprecated in Matt's repo. |
+| `triage` | Originally scoped as `triage-research` and then dropped before build. Matt's version is collaboration-flavored (maintainer ↔ reporter, bug/enhancement categorisation, `wontfix`); none of that applies in solo research. What was left for a solo user was a thin convenience layer over `gh issue list/view/edit/close` plus a dashboard that pays off only at issue-count volumes the user doesn't expect to hit. The four-state label vocabulary lives on without a skill wrapping it (see §3). |
 
 Also **not** built in v1 (Q18 candidates declined):
 - `archive-replication-package` — useful but periodic; revisit later.
@@ -232,20 +229,19 @@ Legend: ✅ shipped · 🔄 in progress · ⏳ next up · ⬜ not started.
 1. ✅ `setup-research-skills` — shipped 2026-05-14, updated 2026-05-14 to add the `epic` kind label. `skills/setup-research-skills/` (SKILL.md + 5 seed-template files), registered in `.claude-plugin/plugin.json`, linked from `README.md`. `triage-labels.md` now split into state labels (4) and kind labels (`epic`). Not yet end-to-end tested on a fresh repo.
 2. ✅ `grill-with-docs-research` — shipped 2026-05-14. `skills/grill-with-docs-research/` (SKILL.md + CONTEXT-FORMAT.md + ADR-FORMAT.md), registered in `.claude-plugin/plugin.json`, linked from `README.md`. Mirrors Matt's `grill-with-docs` XML structure (`<what-to-do>` + `<supporting-info>`); retargeted at three CONTEXT.md axes (glossary / variables / population) and methodology ADRs. Single-context only; CONTEXT-MAP branching dropped. Not yet end-to-end tested on a real research repo.
 3. ✅ `to-analysis-plan` — shipped 2026-05-14. `skills/to-analysis-plan/` (SKILL.md + PLAN-FORMAT.md), registered in `.claude-plugin/plugin.json`, linked from `README.md`. Versioned-snapshot model: every invocation writes a new file at `docs/plans/NNNN-slug.md`; successors carry a fixed two-line `Supersedes:` preamble + "What changed" paragraph. Strict synthesise-only — does NOT interview; gaps surface as a first-class "Open questions" section that points back to `grill-with-docs-research`. No fixed template: PLAN-FORMAT.md describes four accomplishment-principles (goal / approach / deliverables / open work) and gives three structurally-different shape sketches (causal-DiD / measurement / Bayesian-methods) as reference points, not templates. After saving the file, offers once to also create a top-level GitHub epic issue (title `Epic: <plan title>`, `epic` kind label, links to plan file). Forced update to `setup-research-skills` to add the `epic` label to its vocabulary. Not yet end-to-end tested on a real research repo.
-4. ⏳ `to-issues-research` — next
-5. ⬜ `triage-research`
-6. ⬜ **Run on one real research project. Find what's broken.**
+4. ✅ `to-issues-research` — shipped 2026-05-14. `skills/to-issues-research/` (SKILL.md + ISSUE-SHAPES.md), registered in `.claude-plugin/plugin.json`, linked from `README.md`. Reads the latest `docs/plans/NNNN-slug.md`, decomposes into a DAG of GitHub Issues using `Depends on:` (no GitHub sub-issues), applies state labels and the new `autonomous-ok` kind label by task-category (plumbing / estimation / sweep default to `autonomous-ok`; methodology-gap / validation / deliverable do not). Bakes in a "one issue ≈ one session" upper-bound sizing rule with three named splitting strategies (pipeline / spec / variation boundaries) documented in ISSUE-SHAPES.md. Two-phase user check-in: first the proposed decomposition, then per-item Open-questions conversion. Populates the epic's `Children:` placeholder if an epic exists; offers once to create one if it doesn't. Forced update to `setup-research-skills` to add the `autonomous-ok` kind label (color `c2e0c6`) — same pattern as `to-analysis-plan` forcing the `epic` label. Closes PLAN.md §9 Q7 (HITL/AFK marking) in favour of the kind label. Not yet end-to-end tested on a real research repo.
+5. ⏳ **Run on one real research project. Find what's broken.** *(Was preceded by `triage-research` in an earlier draft; dropped 2026-05-14 — see §5.)*
 
 **Then deepen, in rough order of leverage:**
 
-7. ⬜ `validate-data`
-8. ⬜ `probe`
-9. ⬜ `improve-research-pipeline`
-10. ⬜ `diagnose-research`
-11. ⬜ `bootstrap-research-repo`
-12. ⬜ `prototype-research`
-13. ⬜ `tdd-research`
-14. ⬜ `zoom-out`, `handoff`, `write-a-skill` (mostly drop-in from Matt)
+6. ⬜ `validate-data`
+7. ⬜ `probe`
+8. ⬜ `improve-research-pipeline`
+9. ⬜ `diagnose-research`
+10. ⬜ `bootstrap-research-repo`
+11. ⬜ `prototype-research`
+12. ⬜ `tdd-research`
+13. ⬜ `zoom-out`, `handoff`, `write-a-skill` (mostly drop-in from Matt)
 
 **Update rule:** when a skill ships, change its bullet to ✅ with the date and a one-line note about what landed (paths, anything deferred). Promote the next skill to ⏳. Keep this section the single source of truth for "where are we" so a future session can pick up cold.
 
@@ -281,7 +277,6 @@ These weren't decided in the interview and should be revisited at implementation
 5. **How does `to-issues-research` interact with `targets`?** Should it read `_targets.R` to derive dependencies, or stay decoupled and rely on the user/grilling to specify `Depends on:`?
 6. **What does an "epic" issue look like exactly?** A GitHub Issue with checkboxes for all child issues, or a separate `PLAN.md` in the repo, or both?
 7. **HITL vs AFK marking on issues.** Matt's framework has this; the user opted for lighter states. Do we still want a per-issue label to flag "agent can run this end-to-end" vs. "user-in-loop required"?
-8. **Anomaly-flagging convention.** When agent finishes an issue and the result looks off, what's the exact convention? Comment with a specific prefix (`⚠️ ANOMALY:`)? A separate `result-flagged` label even though the state machine doesn't have one?
 
 ## 10. References
 

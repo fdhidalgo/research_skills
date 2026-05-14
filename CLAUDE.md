@@ -34,13 +34,12 @@ research-skills/                   # published as a Claude Code plugin
 
 `PLAN.md` §6 is the live tracker for what's shipped, what's next, and what's not started. **Read it at the start of every session** to know where to pick up, and **update it whenever a skill lands** — change the bullet to ✅, add the date, note paths and anything deferred. Don't track progress anywhere else (no separate TODO file, no checklist in this file).
 
-End-to-end thin slice first, then deepen. First five skills to ship, in order:
+End-to-end thin slice first, then deepen. Four skills to ship, in order:
 
 1. `setup-research-skills`
 2. `grill-with-docs-research`
 3. `to-analysis-plan`
 4. `to-issues-research`
-5. `triage-research`
 
 Then run on one real research project and find what's broken before deepening (`validate-data`, `improve-research-pipeline`, `diagnose-research`, the rest).
 
