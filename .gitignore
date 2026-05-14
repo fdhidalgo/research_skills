@@ -1,0 +1,11 @@
+.DS_Store
+*.log
+.env
+.env.local
+
+# Vendored upstream — kept locally for reference, not published
+reference/mattpocock_skills/
+
+# Working installation of Matt's skills for operating on this repo itself
+.agents/skills/
+skills-lock.json
