@@ -1,0 +1,16 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "research-skills",
+  "owner": {
+    "name": "Fernando Hidalgo",
+    "email": "fdhidalgo@gmail.com"
+  },
+  "description": "Single-plugin marketplace for the research-skills plugin.",
+  "plugins": [
+    {
+      "name": "research-skills",
+      "source": "./",
+      "description": "Agent skills for social-science research workflows."
+    }
+  ]
+}

@@ -21,8 +21,15 @@ Coming next (in build order — see [`PLAN.md`](PLAN.md) §6): run the thin slic
 
 ## Install
 
-_Installation instructions will land once the first skill ships._
+In any Claude Code session:
+
+```text
+/plugin marketplace add fdhidalgo/research_skills
+/plugin install research-skills@research-skills
+```
+
+This adds the repo as a marketplace, then installs the four skills above. Run `/plugin marketplace update research-skills` to pull the latest.
 
 ## License
 
-TBD.
+[0BSD](LICENSE) — public-domain-equivalent, no attribution required.

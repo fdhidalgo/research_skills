@@ -1,5 +1,15 @@
 {
+  "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
   "name": "research-skills",
+  "description": "Agent skills for social-science research workflows: setup, Socratic grilling against project docs, analysis-plan synthesis, and decomposition into a DAG of GitHub issues. R + targets first; Python + marimo later.",
+  "author": {
+    "name": "Fernando Hidalgo",
+    "email": "fdhidalgo@gmail.com"
+  },
+  "homepage": "https://github.com/fdhidalgo/research_skills",
+  "repository": "https://github.com/fdhidalgo/research_skills",
+  "license": "0BSD",
+  "keywords": ["research", "social-science", "r", "targets", "causal-inference", "bayesian", "skills"],
   "skills": [
     "./skills/setup-research-skills",
     "./skills/grill-with-docs-research",
