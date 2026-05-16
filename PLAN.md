@@ -33,7 +33,7 @@ Writing skills are **out of scope** for this iteration.
 - All artifacts (CLAUDE.md, CONTEXT.md, ADRs, issues) are repo-scoped. No shared-program repo.
 
 ### Memory artifacts (Q5)
-Clean split between *static facts* and *immutable decisions*:
+Clean split between *static facts* and *append-only decisions*:
 
 ```
 repo/
@@ -47,7 +47,7 @@ repo/
     population:       # who's in / out
       workers aged 25–55 in sample S
 
-  docs/adr/           # numbered, immutable, supersede-don't-edit
+  docs/adr/           # numbered; append-only once Accepted (Proposed = editable)
     0000-template.md
     0001-did-twfe.md       — Why DiD with two-way FE
     0002-priors.md         — Weakly-informative N(0, 2.5) on coefs
@@ -56,6 +56,8 @@ repo/
 ```
 
 ADRs record methodology choices (identification strategy, estimator, prior choice, sample cuts, missing-data handling). They are citable from issues, the plan, and code comments.
+
+**Amendment (2026-05-16): ADR lifecycle, not flat immutability.** The original "numbered, immutable, supersede-don't-edit" rule applied confirmatory-grade ceremony to exploratory-phase churn — wrong for research, where revisiting decisions on new information is the normal mode, not error correction. Resolution: the append-only constraint attaches at the `Proposed → Accepted` transition, not at creation. `Proposed` ADRs are edited freely; `Accepted` ADRs are append-only and revised by superseding (or `Reversed by ADR-N` when reverting). The researcher controls the lock — the agent may offer to mark `Accepted` when work starts depending on an ADR but never flips it (consistent with the no-agent-gating commitment). Framing shifts from "immutable / if a decision turns out to be wrong" to "append-only / revisiting an Accepted decision is normal — recording the pivot is what protects you against forking-paths suspicion." No new mechanism: `Proposed`/`Accepted`/`Superseded` already existed, so no downstream repo migration is needed. Canonical statement: `grill-with-docs-research/ADR-FORMAT.md` § Status lifecycle.
 
 ### Issue tracker (Q8)
 **GitHub Issues only.** Private repos OK. `gh` CLI for the agent's access.

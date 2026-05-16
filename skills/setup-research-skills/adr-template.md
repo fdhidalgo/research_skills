@@ -1,6 +1,6 @@
 # ADR-NNNN: <decision title>
 
-- **Status:** Proposed | Accepted | Superseded by ADR-NNNN
+- **Status:** Proposed | Accepted | Superseded by ADR-NNNN | Reversed by ADR-NNNN
 - **Date:** YYYY-MM-DD
 
 ## Context
@@ -21,4 +21,4 @@ Downstream effects. What does this commit us to? What robustness checks does it 
 
 ---
 
-*ADRs are immutable. If this decision later proves wrong, write a new ADR that supersedes it and update the **Status** line of this one to `Superseded by ADR-NNNN`. Do not edit the body.*
+*While **Proposed**, edit this in place freely — nothing depends on it yet. Once **Accepted**, the record is append-only: revisiting the decision is normal research, but don't edit the body — write a new ADR that supersedes (or reverses) it and flip the **Status** line above to point at the new number.*

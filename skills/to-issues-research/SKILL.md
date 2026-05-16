@@ -21,7 +21,7 @@ Same single-context layout as the rest of the suite. One paper, one repo:
 /
 ├── CONTEXT.md                # glossary / variables / population
 ├── docs/
-│   ├── adr/                  # methodology decisions, numbered, immutable
+│   ├── adr/                  # methodology decisions, numbered; append-only once Accepted
 │   ├── plans/                # analysis plans, numbered, versioned snapshots
 │   └── agents/               # this skill's contracts (written by setup-research-skills)
 │       ├── issue-tracker.md  # gh CLI conventions + Depends-on field

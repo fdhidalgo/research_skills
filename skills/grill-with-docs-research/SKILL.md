@@ -23,7 +23,7 @@ This is a research repo: one paper, one project, one git repo. The documentation
 /
 ├── CONTEXT.md         # static facts: glossary, variables, population
 ├── docs/
-│   └── adr/           # methodology decisions, numbered, immutable
+│   └── adr/           # methodology decisions, numbered; append-only once Accepted
 │       ├── 0000-template.md
 │       ├── 0001-identification-strategy.md
 │       └── 0002-priors.md

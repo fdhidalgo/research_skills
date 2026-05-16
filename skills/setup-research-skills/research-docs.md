@@ -35,4 +35,4 @@ If your output contradicts an existing methodology ADR, surface it explicitly ra
 
 > _Contradicts ADR-0007 (two-way fixed-effects DiD) — but worth reopening because…_
 
-ADRs are immutable; the right move is to propose a new ADR that supersedes the old one, not to edit the old one in place.
+If the ADR is still **Proposed**, resolve the conflict by revising it in place. If it is **Accepted**, don't edit it — propose a new ADR that supersedes (or reverses) the old one. Either way, surface the conflict; never silently override an Accepted decision.

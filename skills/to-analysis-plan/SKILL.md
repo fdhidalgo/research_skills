@@ -23,7 +23,7 @@ Same single-context layout as the rest of the suite. One paper, one repo:
 /
 ├── CONTEXT.md                # glossary / variables / population
 ├── docs/
-│   ├── adr/                  # methodology decisions, numbered, immutable
+│   ├── adr/                  # methodology decisions, numbered; append-only once Accepted
 │   │   ├── 0000-template.md
 │   │   ├── 0001-identification-strategy.md
 │   │   └── 0002-priors.md

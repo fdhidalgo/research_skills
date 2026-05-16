@@ -48,7 +48,7 @@ Then run on one real research project and find what's broken before deepening (`
 These came out of the design interview and should be respected by anything we build:
 
 - **One repo per paper/project** is the unit of work. All artifacts are repo-scoped.
-- **`CONTEXT.md` vs `docs/adr/`** split: static facts (glossary, variable map, population) vs. immutable methodological decisions (numbered, supersede-don't-edit).
+- **`CONTEXT.md` vs `docs/adr/`** split: static facts (glossary, variable map, population) vs. numbered methodological decisions. ADRs are append-only **once `Accepted`**; `Proposed` ADRs are edited freely, and revisiting an Accepted one is normal research — done by superseding (or `Reversed by ADR-N`), not editing. The researcher flips the `Proposed → Accepted` lock; the agent may offer but never flips it.
 - **GitHub Issues** with a `Depends on: #N` field in the body capture the task DAG. A top-level epic issue (or `PLAN.md`) ties the decomposition together. No use of GitHub's sub-issues feature.
 - **Lightweight 4-state triage**: `needs-info` / `ready` / `awaiting-review` / `done`.
 - **Agent autonomous scope**: pipeline plumbing, specified estimations, pre-specified robustness/sensitivity sweeps. *Not* methodological exploration.

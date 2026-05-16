@@ -18,7 +18,7 @@ The seed already defines the structure:
 ```markdown
 # ADR-NNNN: <decision title>
 
-- **Status:** Proposed | Accepted | Superseded by ADR-NNNN
+- **Status:** Proposed | Accepted | Superseded by ADR-NNNN | Reversed by ADR-NNNN
 - **Date:** YYYY-MM-DD
 
 ## Context
@@ -35,13 +35,18 @@ Use the sections when they earn their place:
 - **Alternatives considered** — only if the rejected options are worth remembering, especially the ones a future reader (or referee) will want to suggest again.
 - **Consequences** — only if there are non-obvious downstream effects: robustness checks this triggers, ADRs this makes reachable or unreachable, what the choice commits you to.
 
-## Status conventions
+## Status lifecycle
 
-- `Proposed` — drafted during a grilling session but not yet committed to.
-- `Accepted` — the working decision.
-- `Superseded by ADR-NNNN` — when a later ADR replaces this one.
+An ADR carries one of:
 
-**ADRs are immutable.** If a decision turns out to be wrong, write a new ADR that supersedes it and update the **Status** line on the old one to `Superseded by ADR-NNNN`. Do not edit the body of the old ADR. The point of the record is that you can read what was decided when, and why it changed.
+- `Proposed` — drafted during grilling; nothing builds on it yet. **Edit it in place freely.** There's nothing to audit until something depends on it, so revise the body as your thinking moves.
+- `Accepted` — the working decision; the plan, issues, or code now build on it. **From here the record is append-only:** don't edit the body — supersede it.
+- `Superseded by ADR-NNNN` — a later ADR replaced this decision with a different one.
+- `Reversed by ADR-NNNN` — a later ADR went back to an approach this one had moved away from. Use this instead of *Superseded* when you're reverting rather than advancing; the distinction is itself worth recording in a research trail.
+
+The `Proposed → Accepted` transition is the lock, and it is **yours to flip, not the agent's**. The natural triggers are the points where you actually commit: an issue or the analysis plan starts depending on the decision, you file a pre-registration, you hit an analysis freeze, or you make first contact with outcome data. The skill may *offer* to mark an ADR `Accepted` when it sees work beginning to depend on it; it never flips it for you. New ADRs are born `Proposed` — don't default a fresh one to `Accepted` unless the user says it's locked.
+
+**Revisiting an Accepted decision is normal research, not a failure.** You learned something — that is the process working. The append-only rule is not there to discourage changing your mind; it is there so that when you do, the trail shows the change was principled and not outcome-driven. Recording the pivot *protects* you. To revise an Accepted decision, write a new ADR that supersedes (or reverses) it and flip the old one's **Status** line to point at the new number. A supersede ADR can be four lines — what changed, what you learned, what it affects, `Supersedes ADR-NNNN`. Don't edit the superseded body: its value is being a faithful record of what you believed then, and why you moved.
 
 ## When to offer an ADR
 

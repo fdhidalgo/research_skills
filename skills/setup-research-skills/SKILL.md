@@ -86,7 +86,7 @@ State labels (four-state pipeline): `needs-info` / `ready` / `awaiting-review` /
 
 ### Research docs
 
-Single-context: `CONTEXT.md` (glossary / variables / population) and `docs/adr/` (methodology decisions, immutable, supersede-don't-edit) at the repo root. See `docs/agents/research-docs.md`.
+Single-context: `CONTEXT.md` (glossary / variables / population) and `docs/adr/` (numbered methodology decisions; append-only once `Accepted`, `Proposed` editable) at the repo root. See `docs/agents/research-docs.md`.
 ```
 
 If the user overrode any triage label names in step 2, reflect those strings in the `Triage labels` line.
