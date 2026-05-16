@@ -44,7 +44,7 @@ Before drafting:
 - `CONTEXT.md` — paper terminology (glossary), code/data ↔ paper-term map (variables), sample inclusion / exclusion (population). Drives vocabulary in the plan.
 - `docs/adr/*.md` — methodology decisions touching the work. Plans cite ADRs by number rather than restating them.
 - Conversation history — what's been grilled, what's been decided, what's still open.
-- `_targets.R`, files in `R/` — only to understand the pipeline as it exists. Don't load data; don't run analyses.
+- `_targets.R`, files in `R/` — to understand the pipeline as it exists. Read code, names, comments first; column names and cleaning rules are usually checkable there. But if examining the data would make the plan *materially better* — settling an open question, checking a feasibility assumption before it's written into a step — then open it. Light inspection (distributions, missingness, value ranges), not the planned estimation.
 
 If `CONTEXT.md` or `docs/adr/` is missing, proceed silently. Don't gate. The absence surfaces as an Open question in the draft.
 

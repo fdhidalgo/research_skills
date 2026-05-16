@@ -36,8 +36,8 @@ During exploration, also read what's already there:
 
 - `CONTEXT.md` — the glossary (paper terms), variables (code/data column ↔ paper-term map), and population (who's in/out of the sample).
 - `docs/adr/*.md` — methodology decisions touching the area being discussed.
-- `_targets.R`, files in `R/` — the pipeline as it exists. Read code, names, comments. Don't load data; don't run analyses.
-- Raw data column names *only as named by the code* — don't open data files.
+- `_targets.R`, files in `R/` — the pipeline as it exists. Read code, names, comments.
+- Raw data — reach for the code and `CONTEXT.md` first; column names and cleaning rules are usually checkable from the code that names and transforms them. But if actually examining the data would make this a *much more useful* session — resolving an ambiguity the code can't settle, surfacing an anomaly worth grilling, or grounding an edge-case scenario in real values — then open it. Light inspection (distributions, missingness, value ranges, cross-tabs), not the planned estimation.
 
 ### Lazy file creation
 
@@ -89,7 +89,7 @@ When the user states how something works in the pipeline, check whether the code
 
 > The code in `R/clean_treatment.R` drops anyone with `tr == NA`. You just said missingness gets imputed in cleaning. Which is right?
 
-Don't load data; don't run analyses. Column names from raw data are checkable from code that *names* them, not from opening the files.
+Code and `CONTEXT.md` are the default reference here — column names and cleaning rules are checkable from the code that *names* and *transforms* them, no file-opening required. But when reading the code leaves the contradiction unresolved, or seeing the actual distribution would change which question matters, open the data and look. Inspect to sharpen the questions; don't run the planned analyses.
 
 ### Update CONTEXT.md inline
 
