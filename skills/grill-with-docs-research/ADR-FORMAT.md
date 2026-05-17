@@ -52,7 +52,7 @@ The `Proposed → Accepted` transition is the lock, and it is **yours to flip, n
 
 All three of these must be true:
 
-1. **Hard to reverse** — the cost of changing your mind later is meaningful. The choice changes the findings, or invalidates work already done, or commits you to a specific robustness sweep.
+1. **Hard to reverse** — the cost of changing your mind later is meaningful. The choice changes the findings, or invalidates work already done, or commits you to a specific robustness test.
 2. **Surprising without context** — a future reader (collaborator, referee, future-you) will look at the code or the table and wonder "why on earth did they do it this way?"
 3. **The result of a real trade-off** — there were genuine alternatives and you picked one for specific reasons.
 

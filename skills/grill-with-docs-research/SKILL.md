@@ -1,6 +1,6 @@
 ---
 name: grill-with-docs-research
-description: Socratic grilling session that stress-tests a research plan against the paper's recorded language (`CONTEXT.md` — glossary, variables, population) and methodology ADRs (`docs/adr/*.md`), updating both inline as decisions crystallise. Use when the user wants to grill a research plan, hypothesis, estimator choice, sample restriction, identification strategy, prior, or other methodological commitment.
+description: "Socratic grilling session that stress-tests a research plan against the paper's recorded language (`CONTEXT.md` — glossary, variables, population) and methodology ADRs (`docs/adr/*.md`), updating both inline as decisions crystallise. Use when the user wants to grill a research plan, hypothesis, estimator choice, sample restriction, identification strategy, prior, or other methodological commitment."
 ---
 
 <what-to-do>

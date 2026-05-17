@@ -15,7 +15,7 @@ Issues for this repo live as GitHub Issues. Use the `gh` CLI for all operations.
 
 ## Issue body shape
 
-**No mandatory template.** Issue bodies are flexible — match the shape to the work (a methodology question, a cleaning step, an estimation, a sweep). One required convention:
+**No mandatory template.** Issue bodies are flexible — match the shape to the work (a methodology question, a cleaning step, an estimation, a robustness test). One required convention:
 
 ### `Depends on:` field
 

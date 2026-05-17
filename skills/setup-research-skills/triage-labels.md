@@ -25,7 +25,7 @@ Edit the right-hand column to match the vocabulary you actually use in GitHub.
 | Canonical kind   | Label in our tracker | Meaning                                                                                                            |
 | ---------------- | -------------------- | ------------------------------------------------------------------------------------------------------------------ |
 | `epic`           | `epic`               | Top-level container for a numbered analysis plan; not a work item, not in the state pipeline                       |
-| `autonomous-ok`  | `autonomous-ok`      | Work falls within the agent's autonomous scope: plumbing, specified estimation, or pre-specified sweep             |
+| `autonomous-ok`  | `autonomous-ok`      | Work falls within the agent's autonomous scope: plumbing, specified estimation, or pre-specified robustness tests  |
 
 Kind labels are applied at issue creation and stay with the issue for its lifetime — they don't move.
 

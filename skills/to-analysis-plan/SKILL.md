@@ -1,6 +1,6 @@
 ---
 name: to-analysis-plan
-description: Synthesise the current conversation, `CONTEXT.md`, and ADRs into a numbered analysis-plan document at `docs/plans/NNNN-slug.md`. Versioned-snapshot model — every invocation writes a new file; successors reference the prior plan and what changed. Does NOT interview the user; if context is thin, surfaces gaps as a first-class "Open questions" section and points back to `grill-with-docs-research`. Use when the user wants to lock a plan after grilling, draft a successor plan after a referee report / data refresh / identification pivot, or get a snapshot of the current state of thinking.
+description: "Synthesise the current conversation, `CONTEXT.md`, and ADRs into a numbered analysis-plan document at `docs/plans/NNNN-slug.md`. Versioned-snapshot model — every invocation writes a new file; successors reference the prior plan and what changed. Does NOT interview the user; if context is thin, surfaces gaps as a first-class \"Open questions\" section and points back to `grill-with-docs-research`. Use when the user wants to lock a plan after grilling, draft a successor plan after a referee report / data refresh / identification pivot, or get a snapshot of the current state of thinking."
 ---
 
 <what-to-do>
