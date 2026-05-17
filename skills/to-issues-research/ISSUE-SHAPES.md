@@ -22,7 +22,7 @@ Two flavours, used differently:
 - **State labels** (one per work-unit issue) — `needs-info` → `ready` → `awaiting-review` → `done`. Move with the issue as it progresses. New issues land in `needs-info` or `ready`.
 - **Kind labels** (categorical, stay with the issue for life) — `epic` (plan container; doesn't get a state label) and `autonomous-ok` (regular work that falls within the agent's autonomous scope; coexists with a state label).
 
-`to-issues-research` applies the state label at creation, and applies `autonomous-ok` to issues whose category is plumbing / estimation / sweep. methodology-gap / validation / deliverable issues do not get `autonomous-ok`. Use the canonical strings recorded in `docs/agents/triage-labels.md` (the user may have overridden them at setup time).
+`to-issues-research` applies the state label at creation, and applies `autonomous-ok` to issues whose category is plumbing / estimation / robustness. methodology-gap / validation / deliverable issues do not get `autonomous-ok`. Use the canonical strings recorded in `docs/agents/triage-labels.md` (the user may have overridden them at setup time).
 
 ## Sizing
 
@@ -31,7 +31,7 @@ Two flavours, used differently:
 Signals an issue is too big:
 
 - Touches several pipeline nodes that aren't tightly coupled.
-- Combines task categories (e.g. plumbing **and** estimation **and** a sweep).
+- Combines task categories (e.g. plumbing **and** estimation **and** a robustness test).
 - Has many distinct deliverables.
 - Body would naturally want multiple sub-headings of unrelated work.
 
@@ -43,11 +43,11 @@ A "build the analytic file and run the primary spec on it" issue is two issues. 
 
 ### Spec boundary — primary → robustness
 
-"Run the primary spec plus the four sensitivities the plan calls for" is two issues. The first issue is just the primary spec — locked, single output, easy to review. The second issue is the robustness sweep, with `Depends on: #<primary>`, listing the variations exactly as the plan enumerates them. This keeps the primary result reviewable on its own terms before the sweep arrives and lets the sweep be revisited without re-running the primary.
+"Run the primary spec plus the four sensitivities the plan calls for" is two issues. The first issue is just the primary spec — locked, single output, easy to review. The second issue is the robustness test, with `Depends on: #<primary>`, listing the variations exactly as the plan enumerates them. This keeps the primary result reviewable on its own terms before the robustness test arrives and lets it be revisited without re-running the primary.
 
-### Variation boundary — sweep → N variant issues
+### Variation boundary — robustness test → N variant issues
 
-When each variation in a sweep is non-trivial (touches its own data prep, has its own diagnostics, or takes meaningful compute), split the sweep into one issue per variant, each `Depends on: #<primary>`. Put the distinguishing detail in the title (*Sweep: cluster level — industry-year*; *Sweep: cluster level — state-year*). When variations are truly mechanical (same code, swap one argument), collapse into a single sweep issue.
+When each variation in a robustness test is non-trivial (touches its own data prep, has its own diagnostics, or takes meaningful compute), split it into one issue per variant, each `Depends on: #<primary>`. Put the distinguishing detail in the title (*Robustness: cluster level — industry-year*; *Robustness: cluster level — state-year*). When variations are truly mechanical (same code, swap one argument), collapse into a single robustness-test issue.
 
 **Lower bound: don't atomise to triviality.** An issue should be worth filing — not "rename one variable" or "fix a typo in a target name." The sizing rule is an upper bound on complexity, not a mandate to minimise.
 
@@ -59,7 +59,7 @@ Use these to bucket work as you decompose the plan.
 
 - **estimation.** A *named* specification on *named* inputs producing a *named* output. The plan + ADRs together should pin down which estimator, which covariates, which clustering, which sample. The issue body cites those ADRs by number rather than re-deciding methodology. Default state: `ready` when the spec is locked. Default `autonomous-ok`: **yes**.
 
-- **sweep.** Pre-specified variations of a primary estimation. Robustness, sensitivity, alternative samples, alternative clusterings, alternative priors. The plan enumerates them; the issue body lists them; the agent runs them. Default state: `ready`. Default `autonomous-ok`: **yes**.
+- **robustness.** Pre-specified variations of a primary estimation — robustness and sensitivity tests, alternative samples, alternative clusterings, alternative priors. The plan enumerates them; the issue body lists them; the agent runs them. Default state: `ready`. Default `autonomous-ok`: **yes**.
 
 - **methodology-gap.** Work blocked on a methodology decision that hasn't been made. The plan flagged the gap; until it's resolved (via `grill-with-docs-research` → ADR) the work can't be specified. Default state: `needs-info`. Default `autonomous-ok`: **no** — methodology exploration is outside the agent's autonomous scope (per PLAN.md §3).
 
@@ -90,16 +90,16 @@ Run the Callaway–Sant'Anna estimator per ADR-0003 on the analytic file built i
 - [ ] Sign is consistent with the predicted direction in the plan; flag if not.
 ```
 
-### Sketch B — sweep variant issue (autonomous-ok)
+### Sketch B — robustness-test variant issue (autonomous-ok)
 
 ```markdown
-## Sweep: cluster level — industry-year
+## Robustness: cluster level — industry-year
 
 Depends on: #17 (primary ATT)
 
 **Plan:** [docs/plans/0001-initial-analysis-plan.md](docs/plans/0001-initial-analysis-plan.md), §Robustness — clustering.
 
-Re-run the primary specification from #17, replacing the state-year clustering with industry-year. All other choices identical. Produce a single ATT + SE in `tar_target(sweep_cluster_industry_year)` and add the row to the robustness table per the plan.
+Re-run the primary specification from #17, replacing the state-year clustering with industry-year. All other choices identical. Produce a single ATT + SE in `tar_target(robustness_cluster_industry_year)` and add the row to the robustness table per the plan.
 
 **Acceptance**
 - [ ] Output target built without errors.
@@ -140,7 +140,7 @@ Entries the user leaves in the plan stay in the plan. They'll resurface in any s
 - **Titles use `CONTEXT.md` glossary terms.** "ATT on earnings two years post-exit," not "ate2 on earn2." Reserve code identifiers for the body.
 - **Cite ADRs by number** (`per ADR-0003`). Don't restate the decision.
 - **Reference the plan** with `**Plan:** [docs/plans/NNNN-slug.md](docs/plans/NNNN-slug.md), §<section>` near the top of the body.
-- **For split sets**, put the distinguishing detail in the title. *Sweep: cluster level — state-year*, not *Sweep #4*.
+- **For split sets**, put the distinguishing detail in the title. *Robustness: cluster level — state-year*, not *Robustness #4*.
 
 ## What does NOT belong in an issue
 

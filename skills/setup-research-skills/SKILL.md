@@ -46,7 +46,7 @@ State labels (defaults):
 Kind labels (defaults):
 
 - `epic` — top-level container for an analysis plan; not a work item, not in the state pipeline
-- `autonomous-ok` — work falls within the agent's autonomous scope (plumbing, specified estimation, pre-specified sweep); orthogonal to state
+- `autonomous-ok` — work falls within the agent's autonomous scope (plumbing, specified estimation, pre-specified robustness tests); orthogonal to state
 
 Default: each role's string equals its name. Ask the user if they want to override any. If their repo already uses different label names, map them here so the skills apply the right ones instead of creating duplicates.
 
@@ -121,7 +121,7 @@ If the repo has a GitHub remote (check `git remote -v`):
 
    Kind labels:
    - `epic` — color `c5def5` (light blue), description "Top-level container for an analysis plan; not a triage state"
-   - `autonomous-ok` — color `c2e0c6` (light green), description "Work falls within the agent's autonomous scope (plumbing / specified estimation / pre-specified sweep)"
+   - `autonomous-ok` — color `c2e0c6` (light green), description "Work falls within the agent's autonomous scope (plumbing / specified estimation / pre-specified robustness tests)"
 
 5. If any label exists already with the same name, skip it silently — don't error out and don't change its color/description without asking.
 

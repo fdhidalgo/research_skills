@@ -29,7 +29,7 @@ Same single-context layout as the rest of the suite. One paper, one repo:
 └── R/ (or analysis/, src/, etc.)
 ```
 
-The plan is the input. The issues + the updated epic are the output. Decomposition follows task-type (plumbing / estimation / sweep / methodology-gap / validation / deliverable), not a vertical schema-API-UI slice.
+The plan is the input. The issues + the updated epic are the output. Decomposition follows task-type (plumbing / estimation / robustness / methodology-gap / validation / deliverable), not a vertical schema-API-UI slice.
 
 ## Process
 
@@ -54,12 +54,12 @@ Walk the plan's deliverables + approach. Bucket each unit of work into one of th
 
 - **plumbing** — data load, cleaning, transformation, schema; touches `tar_target(...)`
 - **estimation** — a named specification on named inputs producing a named output
-- **sweep** — pre-specified variations of a primary spec (robustness, sensitivity)
+- **robustness** — pre-specified variations of a primary spec (robustness and sensitivity tests)
 - **methodology-gap** — work blocked on a methodology decision that hasn't been made
 - **validation** — sanity checks, balance checks, MCMC diagnostics, distributional checks
 - **deliverable** — produce a specific table, figure, or output file
 
-Categories plumbing / estimation / sweep default to the **`autonomous-ok`** kind label. methodology-gap / validation / deliverable do not.
+Categories plumbing / estimation / robustness default to the **`autonomous-ok`** kind label. methodology-gap / validation / deliverable do not.
 
 **Apply the session-sizing rule.** Each issue should plausibly be completable in a single session. Signals an issue is too big: touches many pipeline nodes, combines categories, has many distinct deliverables, or its body would naturally want multiple unrelated sub-headings. When that happens, propose a split using one of the three splitting strategies in [ISSUE-SHAPES.md](./ISSUE-SHAPES.md) (pipeline boundary / spec boundary / variation boundary) and wire the resulting issues with `Depends on:`. Don't atomise to triviality — the rule is an upper bound, not a floor. The classification + sizing is a proposal; the user adjusts in step 4.
 
@@ -67,7 +67,7 @@ Categories plumbing / estimation / sweep default to the **`autonomous-ok`** kind
 
 Per proposed issue, decide:
 
-- **Title** — short, uses `CONTEXT.md` glossary terms. For split sets, put the distinguishing detail in the title (e.g. *Sweep: cluster level — industry-year* rather than burying it in the body).
+- **Title** — short, uses `CONTEXT.md` glossary terms. For split sets, put the distinguishing detail in the title (e.g. *Robustness: cluster level — industry-year* rather than burying it in the body).
 - **Category** — one of the six above.
 - **Proposed state label** — `ready` if the methodology is locked and the spec is written; `needs-info` if there's a methodology gap or the spec is still open.
 - **Proposed `autonomous-ok` flag** — default per category, override when the specifics warrant it.
