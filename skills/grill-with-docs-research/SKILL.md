@@ -109,7 +109,7 @@ Only offer to create an ADR when all three are true:
 2. **Surprising without context** — a future reader (collaborator, referee, future-you) will wonder "why did they do it this way?"
 3. **The result of a real trade-off** — there were genuine alternatives and you picked one for specific reasons.
 
-If any of the three is missing, skip the ADR. Examples of what qualifies — and the format — are in [ADR-FORMAT.md](./ADR-FORMAT.md).
+If any of the three is missing, skip the ADR. Keep the ones you do write short — a specific **Decision** sentence plus a brief reason it's non-obvious (a sentence or two of rationale, not an extended argument). Examples of what qualifies, the length norm, and a worked example are in [ADR-FORMAT.md](./ADR-FORMAT.md).
 
 ## Handoff
 

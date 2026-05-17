@@ -3,21 +3,23 @@
 - **Status:** Proposed | Accepted | Superseded by ADR-NNNN | Reversed by ADR-NNNN
 - **Date:** YYYY-MM-DD
 
-## Context
-
-The methodological question or constraint forcing this decision. What about the data, the design, or the literature makes a choice necessary here?
+> Keep it skimmable — a good ADR is read in ~20 seconds. Only **Status**, **Date**, and a one- or two-sentence **Decision** are required. Every other section is optional and should be one line when used. A brief rationale — a sentence or two on *why* this and not the obvious alternative — is exactly what the ADR is for; an extended argument is not.
 
 ## Decision
 
-What was chosen. Be specific — estimator, prior, sample cut, missing-data rule, weighting scheme, clustering level, etc. Enough detail that someone could implement the decision from this ADR alone.
+What was chosen, specifically — estimator, prior, sample cut, rule, weighting/clustering level. One or two sentences.
+
+## Context
+
+*(optional, one line)* The constraint forcing the choice — only if it isn't obvious from the project.
 
 ## Alternatives considered
 
-What else was on the table, and why each was rejected. Include the obvious naive default even when it was easy to rule out.
+*(optional, one line each)* What was rejected and the one-clause reason. Omit if there was no real alternative.
 
 ## Consequences
 
-Downstream effects. What does this commit us to? What robustness checks does it trigger? What does it preclude? Which other ADRs become reachable or unreachable as a result?
+*(optional, one line each)* Non-obvious downstream effects — robustness checks triggered, what it precludes. Omit if none.
 
 ---
 

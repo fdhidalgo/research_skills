@@ -21,19 +21,45 @@ The seed already defines the structure:
 - **Status:** Proposed | Accepted | Superseded by ADR-NNNN | Reversed by ADR-NNNN
 - **Date:** YYYY-MM-DD
 
-## Context
 ## Decision
+## Context
 ## Alternatives considered
 ## Consequences
 ```
 
-Only **Status** and **Date** are required. Everything else is optional — an ADR can be a single paragraph in the **Decision** section. The value is in recording *that* a methodology decision was made and *why*; not in filling out sections.
+Only **Status**, **Date**, and a one- or two-sentence **Decision** are required. Everything else is optional. The value is in recording *that* a methodology decision was made and a brief *why* — a sentence or two on the reason it's non-obvious, not an extended argument and not every section filled in for its own sake.
 
-Use the sections when they earn their place:
+Use the optional sections only when they earn their place, and one line each when they do:
 
 - **Context** — only if the forcing constraint (data feature, design constraint, prior literature) isn't already obvious from the project.
 - **Alternatives considered** — only if the rejected options are worth remembering, especially the ones a future reader (or referee) will want to suggest again.
 - **Consequences** — only if there are non-obvious downstream effects: robustness checks this triggers, ADRs this makes reachable or unreachable, what the choice commits you to.
+
+## Keep them short
+
+Default to brief. An ADR a referee skims in twenty seconds beats a thorough one nobody reads. Most are 5–12 lines total. A sentence or two of rationale is welcome and expected — that's the *why* the record exists to capture. The line to stop at is the third paragraph: past there you've moved from stating the reason to mounting a full defense, and the defense belongs in the paper, not here.
+
+A complete, well-sized ADR — this is the ceiling for a typical one, not the floor:
+
+```markdown
+# ADR-0004: Cluster SEs at state-year
+
+- **Status:** Accepted
+- **Date:** 2026-03-10
+
+## Decision
+Cluster standard errors at the state-year level.
+
+## Context
+Treatment is assigned by state and rolls out over years; residuals
+are correlated within state-year cells.
+
+## Consequences
+Effective N is ~480 clusters, not 12k rows — wild-cluster bootstrap
+used for the small-cluster subgroup in ADR-0009.
+```
+
+Many ADRs are shorter still: a title, the status/date lines, and a single **Decision** sentence. That is a finished ADR, not a stub — don't pad it.
 
 ## Status lifecycle
 
