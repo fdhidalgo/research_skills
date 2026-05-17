@@ -1,6 +1,6 @@
 ---
 name: to-issues-research
-description: Decompose an analysis plan at `docs/plans/NNNN-slug.md` into a DAG of GitHub Issues using the `Depends on: #N` convention from `docs/agents/issue-tracker.md`, sized so each issue is plausibly a single session. Publishes in dependency order, applies state labels and the `autonomous-ok` kind label where appropriate, and populates the matching epic's `Children:` placeholder (or offers once to create an epic). Surfaces the plan's Open questions item-by-item and converts the ones the user opts in to `needs-info` issues. Use when the user wants to turn a locked analysis plan into pickable work, populate an epic with child-issue references, or convert specific open questions into actionable tickets.
+description: "Decompose an analysis plan at `docs/plans/NNNN-slug.md` into a DAG of GitHub Issues using the `Depends on: #N` convention from `docs/agents/issue-tracker.md`, sized so each issue is plausibly a single session. Publishes in dependency order, applies state labels and the `autonomous-ok` kind label where appropriate, and populates the matching epic's `Children:` placeholder (or offers once to create an epic). Surfaces the plan's Open questions item-by-item and converts the ones the user opts in to `needs-info` issues. Use when the user wants to turn a locked analysis plan into pickable work, populate an epic with child-issue references, or convert specific open questions into actionable tickets."
 ---
 
 <what-to-do>

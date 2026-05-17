@@ -1,6 +1,6 @@
 ---
 name: setup-research-skills
-description: One-time per-repo setup for the research-skills suite. Writes an `## Agent skills` block to `CLAUDE.md`, seeds `docs/agents/*.md`, `CONTEXT.md`, and `docs/adr/0000-template.md`, and creates the GitHub labels (four triage-state labels + the `epic` and `autonomous-ok` kind labels). Run before first use of `grill-with-docs-research`, `to-analysis-plan`, or `to-issues-research` — or if those skills appear to be missing context about this repo's issue tracker, triage labels, or research docs.
+description: "One-time per-repo setup for the research-skills suite. Writes an `## Agent skills` block to `CLAUDE.md`, seeds `docs/agents/*.md`, `CONTEXT.md`, and `docs/adr/0000-template.md`, and creates the GitHub labels (four triage-state labels + the `epic` and `autonomous-ok` kind labels). Run before first use of `grill-with-docs-research`, `to-analysis-plan`, or `to-issues-research` — or if those skills appear to be missing context about this repo's issue tracker, triage labels, or research docs."
 disable-model-invocation: true
 ---
 
